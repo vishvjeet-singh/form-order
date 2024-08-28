@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-group button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Feedback Form</h2>
+        <form id="feedback-form">
+            
+            <div class="form-group">
+                <label for="order-name">Order Name</label>
+                <input type="text" id="order-name" name="order_name" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile-no">Mobile Number</label>
+                <input type="tel" id="mobile-no" name="mobile_no" pattern="[0-9]{10}" required>
+            </div>
+            <div class="form-group">
+                <label for="order-date">Date of Order Delivery</label>
+                <input type="date" id="order-date" name="order_date" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup-person">Recipient</label>
+                <input type="text" id="pickup-person" name="pickup_person" required>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Your Feedback for Person</label>
+                <textarea id="feedback" name="feedback" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            var formData = new FormData(this);
+            var data = {};
+            formData.forEach(function(value, key) {
+                data[key] = value;
+            });
+
+            fetch('  ', { // Replace with your webhook URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Form submitted successfully!');
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                alert('Error submitting form');
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
