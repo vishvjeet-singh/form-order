@@ -63,29 +63,19 @@
         <form id="feedback-form">
             
             <div class="form-group">
-                <label for="order-name">Order Name</label>
+                <label for="order-name">Order Number</label>
                 <input type="text" id="order-name" name="order_name" required>
             </div>
             <div class="form-group">
                 <label for="customer-name">Customer Name</label>
                 <input type="text" id="customer-name" name="customer_name" required>
             </div>
-            <div class="form-group">
-                <label for="mobile-no">Mobile Number</label>
-                <input type="tel" id="mobile-no" name="mobile_no" pattern="[0-9]{10}" required>
-            </div>
-            <div class="form-group">
-                <label for="order-date">Date of Order Delivery</label>
-                <input type="date" id="order-date" name="order_date" required>
-            </div>
+         
             <div class="form-group">
                 <label for="pickup-person">Recipient</label>
                 <input type="text" id="pickup-person" name="pickup_person" required>
             </div>
-            <div class="form-group">
-                <label for="feedback">Your Feedback for Person</label>
-                <textarea id="feedback" name="feedback" rows="4" required></textarea>
-            </div>
+           
             <div class="form-group">
                 <button type="submit">Submit</button>
             </div>
@@ -102,7 +92,7 @@
                 data[key] = value;
             });
 
-            fetch('  ', { // Replace with your webhook URL
+            fetch('https://hook.eu2.make.com/5og8dzfg6mf6dsj40rtx37gz0wiq6bcq', { // Replace with your webhook URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
